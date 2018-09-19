@@ -9,6 +9,9 @@ class Interpreter:
         price_regex = re.compile(r'valor total r\$ \d+[,.]\d{2}')
         list_prices = price_regex.findall(self.raw_text)
 
+        if not list_prices:
+            return ''
+
         price_text = list_prices[0]
 
         # the value is always going to be at the fourth position in the list
@@ -22,15 +25,21 @@ class Interpreter:
         date_regex = re.compile(r'\d{2}/\d{2}/\d{4}')
         list_date = date_regex.findall(self.raw_text)
 
+        if not list_date:
+            return ''
+
         date_text = list_date[0]
 
         date = datetime.datetime.strptime(date_text, '%d/%m/%Y').date()
 
-        return date
+        return date.isoformat()
 
     def find_cnpj(self):
         cnpj_regex = re.compile(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}')
         list_cnpj = cnpj_regex.findall(self.raw_text)
+
+        if not list_cnpj:
+            return ''
 
         cnpj_text = list_cnpj[0]
         return cnpj_text
@@ -42,6 +51,6 @@ class Interpreter:
 
         return {
             "total_price": total_price,
-            "date": date.isoformat(),
+            "date": date,
             "cnpj": cnpj
         }

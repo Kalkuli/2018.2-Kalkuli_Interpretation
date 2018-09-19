@@ -8,7 +8,7 @@ def interpret():
     data = request.get_json()
     if not data:
         return jsonify({
-            'erro': 'sem dado'
+            'error': 'empty json'
         }), 400
 
     raw_text = data.get('raw_text')
