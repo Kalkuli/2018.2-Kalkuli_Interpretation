@@ -1,11 +1,12 @@
-from flask.cli import FlaskGroup
-from project import app
+from flask.cli	import	FlaskGroup
+from project	import	create_app
 import unittest
 
-cli = FlaskGroup(app)
 
+app = create_app()
 
-# Registers comand to run tests
+cli = FlaskGroup(create_app=create_app)
+
 @cli.command()
 def test():
     tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
@@ -14,7 +15,5 @@ def test():
         return 0
     return 1
 
-    
-
-if __name__ == '__main__':
+if	__name__	==	'__main__':
     cli()
