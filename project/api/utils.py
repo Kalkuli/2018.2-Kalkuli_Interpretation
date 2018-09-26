@@ -1,6 +1,7 @@
 import re
 import datetime
 
+
 class Interpreter:
     def __init__(self, raw_text):
         self.raw_text = raw_text
@@ -50,7 +51,10 @@ class Interpreter:
         cnpj = self.find_cnpj()
 
         return {
+            "emission_date": date,
+            "emission_place": "",
+            "tax_value": "",
             "total_price": total_price,
-            "date": date,
-            "cnpj": cnpj
+            "cnpj": cnpj,
+            "products": []
         }

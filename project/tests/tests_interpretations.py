@@ -16,39 +16,39 @@ class TestInterpretation(TestCase):
 
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": "Valor Total R$ 234,21"
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
             self.assertAlmostEqual(234.21, data['total_price'], 2)
 
-    def test_date(self):
-        
+    def test_emission_date(self):
+
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": "Data da Autorização: 02/03/2143"
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
-            self.assertIn('2143-03-02', data['date'])
+            self.assertIn('2143-03-02', data['emission_date'])
 
     def test_cnpj(self):
-    
+
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": "CNPJ - 00.000.000/0000-00"
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
@@ -58,55 +58,55 @@ class TestInterpretation(TestCase):
 
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": "CNPJ - 00.000.000/0000-00, Data da Autorização: 02/03/2143\nValor Total R$ 234,21"
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
             self.assertAlmostEqual(234.21, data['total_price'], 2)
-            self.assertIn('2143-03-02', data['date'])
+            self.assertIn('2143-03-02', data['emission_date'])
             self.assertIn('00.000.000/0000-00', data['cnpj'])
 
     def test_total_price_not_found(self):
 
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": ""
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
             self.assertIn('', data['total_price'])
 
-    def test_date_not_found(self):
-        
+    def test_emission_date_not_found(self):
+
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": ""
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
-            self.assertIn('', data['date'])
+            self.assertIn('', data['emission_date'])
 
     def test_cnpj_not_found(self):
-    
+
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({
+                '/interpret',
+                data=json.dumps({
                     "raw_text": ""
-                }), 
-                content_type = "application/json"
+                }),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
@@ -116,12 +116,13 @@ class TestInterpretation(TestCase):
 
         with self.client:
             response = self.client.post(
-                '/interpret', 
-                data = json.dumps({}), 
-                content_type = "application/json"
+                '/interpret',
+                data=json.dumps({}),
+                content_type="application/json"
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
+
 
 if __name__ == '__main__':
     unittest.main()

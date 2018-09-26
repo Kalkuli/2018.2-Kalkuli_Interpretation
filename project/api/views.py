@@ -3,6 +3,7 @@ from project.api.utils import Interpreter
 
 interpret_blueprint = Blueprint('interpret', __name__)
 
+
 @interpret_blueprint.route('/interpret', methods=['POST'])
 def interpret():
     data = request.get_json()
