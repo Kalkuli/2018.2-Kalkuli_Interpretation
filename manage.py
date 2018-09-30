@@ -1,6 +1,3 @@
-from flask.cli	import	FlaskGroup
-from project	import	create_app
-import unittest
 import coverage
 
 COV = coverage.coverage(
@@ -13,10 +10,15 @@ COV = coverage.coverage(
 )
 COV.start()
 
+from flask.cli import FlaskGroup
+from project import create_app
+import unittest
+
 
 app = create_app()
 
 cli = FlaskGroup(create_app=create_app)
+
 
 @cli.command()
 def test():
@@ -25,6 +27,7 @@ def test():
     if result.wasSuccessful():
         return 0
     return 1
+
 
 @cli.command()
 def cov():
@@ -41,5 +44,6 @@ def cov():
         return 0
     return 1
 
-if	__name__	==	'__main__':
+
+if __name__ == '__main__':
     cli()
