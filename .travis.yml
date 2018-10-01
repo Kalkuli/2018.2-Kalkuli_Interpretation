@@ -14,3 +14,5 @@ script:
   - docker-compose -f docker-compose-dev.yml run base python manage.py test
 after_script:
   - docker-compose -f docker-compose-dev.yml down
+after_success:
+  ./after-success.sh
