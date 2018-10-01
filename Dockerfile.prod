@@ -1,0 +1,15 @@
+# Base Image
+FROM	python:3.6.5-alpine
+
+# Setting working directory
+WORKDIR	/app
+
+# Dealing with requirements
+COPY ./requirements.txt	/app/requirements.txt
+RUN	pip	install	-r	requirements.txt
+
+# Coping project
+COPY . /app
+
+# Running server
+CMD	gunicorn -b 0.0.0.0:$PORT manage:app

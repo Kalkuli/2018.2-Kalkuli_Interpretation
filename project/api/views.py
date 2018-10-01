@@ -20,3 +20,9 @@ def interpret():
     response = interpreter.interpret_text()
 
     return jsonify(response), 201
+
+@interpret_blueprint.route('/hi', methods=['GET'])
+def hi():
+    return jsonify({
+        "hi": "hello"
+    }), 200
