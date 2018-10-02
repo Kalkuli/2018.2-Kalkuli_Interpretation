@@ -10,6 +10,6 @@ then
 fi
 
 docker login -u _ -p "$HEROKU_TOKEN" registry.heroku.com
-docker build -t registry.heroku.com/intense-thicket-76931/web -f Dockerfile.prod .
-docker push registry.heroku.com/intense-thicket-76931/web
-heroku container:release web -a intense-thicket-76931
+docker build -t registry.heroku.com/kalkuli-interpretation/web -f Dockerfile.prod .
+docker push registry.heroku.com/kalkuli-interpretation/web
+heroku container:release web -a kalkuli-interpretation
