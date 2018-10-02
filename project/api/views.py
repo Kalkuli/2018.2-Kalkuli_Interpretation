@@ -24,5 +24,5 @@ def interpret():
 @interpret_blueprint.route('/hi', methods=['GET'])
 def hi():
     return jsonify({
-        "hi": "hello"
+        "hi": "hello!!"
     }), 200
