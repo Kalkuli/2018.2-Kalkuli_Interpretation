@@ -1,6 +1,9 @@
 sudo: required
 services:
   - docker
+language: python 
+python: 
+  - "3.6" 
 env:
   DOCKER_COMPOSE_VERSION: 1.21.1
 before_install:
@@ -19,3 +22,5 @@ script:
 after_script:
   - ./cc-test-reporter after-build -t coverage.py --exit-code $TRAVIS_TEST_RESULT
   - docker-compose -f docker-compose-dev.yml down
+after_success:
+  ./deploy.sh
