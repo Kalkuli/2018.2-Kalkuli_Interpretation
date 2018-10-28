@@ -1,0 +1,9 @@
+{
+    "dev": {
+        "app_function": "manage.app",
+        "project_name": "kalkuliInterpretation",
+        "runtime": "python3.6",
+        "s3_bucket": "kalkuli-interpretation-bucket",
+        "aws_region": "sa-east-1"
+    }
+}
