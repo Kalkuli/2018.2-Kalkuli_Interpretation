@@ -49,3 +49,10 @@ Execute o comando abaixo para checar a cobertura:
 ```
  docker-compose -f docker-compose-dev.yml run base python manage.py cov   
  ```
+
+# Ambientes
+
+## Produção
+Para acessar o ambiente de produção, utilize o link a seguir:```https://c1a97b493g.execute-api.sa-east-1.amazonaws.com/prod```
+## Homologação
+Para acessar o ambiente de homologação, utilize o link a seguir:```https://g1b41i0pn3.execute-api.sa-east-1.amazonaws.com/hom```
