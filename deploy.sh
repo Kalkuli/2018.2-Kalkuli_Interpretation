@@ -4,7 +4,7 @@ set -e
 set -u
 
 
-if [ $TRAVIS_PULL_REQUEST = "false" -o $TRAVIS_BRANCH = "develop" ]
+if [ $TRAVIS_PULL_REQUEST = "false" -a $TRAVIS_BRANCH = "develop" ]
 then
     echo "Deploy on homologation environment started"
     pip3 install zappa
@@ -13,7 +13,7 @@ then
     exit 0;
 fi
 
-if [ $TRAVIS_PULL_REQUEST = "false" -o $TRAVIS_BRANCH = "master" ]
+if [ $TRAVIS_PULL_REQUEST = "false" -a $TRAVIS_BRANCH = "master" ]
 then
     echo "Deploy on production environment started"
     pip3 install zappa
