@@ -1,9 +1,16 @@
 {
-    "dev": {
+    "prod": {
         "app_function": "manage.app",
         "project_name": "kalkuliInterpretation",
         "runtime": "python3.6",
-        "s3_bucket": "kalkuli-interpretation-bucket",
+        "s3_bucket": "kalkuli-interpretation-prod-bucket",
+        "aws_region": "sa-east-1"
+    },
+    "hom": {
+        "app_function": "manage.app",
+        "project_name": "kalkuliInterpretation",
+        "runtime": "python3.6",
+        "s3_bucket": "kalkuli-interpretation-hom-bucket",
         "aws_region": "sa-east-1"
     }
 }
